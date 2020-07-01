@@ -31,7 +31,7 @@ $deals = $response->result;
 //var_dump($deals);
 
 
-if(count($deals)<1){
+if(count($deals)<=1){
 	
 	//var_dump('Entrou no if');
 	date_default_timezone_set('America/Sao_Paulo');
