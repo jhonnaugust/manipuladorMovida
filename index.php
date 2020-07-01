@@ -6,7 +6,7 @@ $bx24 = new BitrixAPI($webhook);
 
 
 //$id = $_GET['id'];
-$titleDeal = 'Movida 2sdasd';//$_GET['company_id'];
+$titleDeal = $_GET['TITLE'];
 
 $categoryID = [0];
 $stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
