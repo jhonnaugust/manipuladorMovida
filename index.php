@@ -28,7 +28,7 @@ $response = $bx24->callMethod("crm.deal.list", $params);
 $deals = $response->result;
 
 
-var_dump($deals);
+//var_dump($deals);
 
 
 if(count($deals)<1){
@@ -70,5 +70,7 @@ if(count($deals)<1){
 
 	$bx24->callMethod('im.notify', $params_message);
 	
+}else{
+	exit('Encerra o processo');
 }
 
