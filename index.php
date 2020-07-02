@@ -5,7 +5,7 @@ $webhook = "https://b24-ol3oxl.bitrix24.com.br/rest/1/6lrqky19v4v9x47r/";
 $bx24 = new BitrixAPI($webhook);                                        
 
 
-//$id = $_GET['id'];
+//$titleDeal = 'Teste Manipulador Movida 3';
 $titleDeal = $_GET['TITLE'];
 
 $categoryID = [0];
@@ -28,12 +28,12 @@ $response = $bx24->callMethod("crm.deal.list", $params);
 $deals = $response->result;
 
 
-//var_dump($deals);
+var_dump($deals);
 
 
-if(count($deals)<=1){
+if(count($deals)<1){
 	
-	//var_dump('Entrou no if');
+	var_dump('Entrou no if');
 	date_default_timezone_set('America/Sao_Paulo');
 	$date = date_create(date('Y-m-d'));
 	date_add($date, date_interval_create_from_date_string('-30 days'));
@@ -71,5 +71,4 @@ if(count($deals)<=1){
 	$bx24->callMethod('im.notify', $params_message);
 	
 }
-
 
