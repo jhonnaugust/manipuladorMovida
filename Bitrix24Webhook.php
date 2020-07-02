@@ -1,4 +1,4 @@
-<script type="text/javascript">alert('cheguei');</script>
+<script type="text/javascript"></script>
 <?php
 
 class BitrixAPI
