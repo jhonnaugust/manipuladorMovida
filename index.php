@@ -57,7 +57,7 @@ if(count($deals)<1){
 
 	
 	$assigned_by_id;
-	$message = "ATENÇÃO! O cliente {$titleDeal} está sem nenhum card criado desde {$timeWithoutDeal}, data onde seu último negócio foi fechado.";
+	$message = "ATENÇÃO! O cliente <b>{$titleDeal}</b> está sem nenhum card criado desde <b>{$timeWithoutDeal}</b>, data onde seu último negócio foi fechado.";
 
 
 	$params_message = [
@@ -69,7 +69,7 @@ if(count($deals)<1){
 	$bx24->callMethod('im.notify', $params_message);
 
 	
-	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o responsável)dentro da automação.
+	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o Responsável/Gestor)dentro da automação.
 	$semDeal = "UF_CRM_1593805882";
 	
 	$params_verifica_deal = [
