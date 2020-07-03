@@ -5,7 +5,7 @@ $webhook = "https://b24-ol3oxl.bitrix24.com.br/rest/1/6lrqky19v4v9x47r/";
 $bx24 = new BitrixAPI($webhook);                                        
 
 
-//$titleDeal = 'Teste Manipulador Movida 3';
+//$titleDeal = 'Teste manipulador Movida 4';
 $titleDeal = $_GET['TITLE'];
 
 $categoryID = [0];
@@ -23,17 +23,14 @@ $params = [
     ]
 ];
 
-
 $response = $bx24->callMethod("crm.deal.list", $params);
 $deals = $response->result;
 
-
 //var_dump($deals);
 
-
+//Na fase Perdido, verifica se existe Deal criado no fúnil Grandes Grupos
 if(count($deals)<1){
-	
-	var_dump('Entrou no if');
+
 	date_default_timezone_set('America/Sao_Paulo');
 	$date = date_create(date('Y-m-d'));
 	date_add($date, date_interval_create_from_date_string('-30 days'));
@@ -43,7 +40,7 @@ if(count($deals)<1){
 
 	$params = [
 	    "filter" => [
-	        //"TITLE" =>$titleDeal,
+	        "TITLE" =>$titleDeal,
 	        "CATEGORY_ID" =>$categoryID,
 	        "STAGE_ID" =>$stageIdLose
 	    ]
@@ -53,11 +50,12 @@ if(count($deals)<1){
     $dealsLose = $response2->result;
 
     foreach($dealsLose as $deal){
+    	$id = $deal->ID;
     	$name = $deal->TITLE;
     	$assigned_by_id[] = $deal->ASSIGNED_BY_ID; 
 	}
 
-	//$id;
+	
 	$assigned_by_id;
 	$message = "ATENÇÃO! O cliente {$titleDeal} está sem nenhum card criado desde {$timeWithoutDeal}, data onde seu último negócio foi fechado.";
 
@@ -69,6 +67,19 @@ if(count($deals)<1){
 	];
 
 	$bx24->callMethod('im.notify', $params_message);
+
+	
+	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o responsável)dentro da automação.
+	$semDeal = "UF_CRM_1593805882";
+	
+	$params_verifica_deal = [
+	    "id" =>$id,
+	    "fields"=> [
+	       $semDeal => 'Sim'
+	    ]
+	];
+
+	$bx24->callMethod("crm.deal.update", $params_verifica_deal);
 	
 }else{
 	exit('Encerra o processo');
