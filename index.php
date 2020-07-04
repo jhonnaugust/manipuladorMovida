@@ -7,6 +7,7 @@ $bx24 = new BitrixAPI($webhook);
 
 //$titleDeal = 'Teste manipulador Movida 4';
 $titleDeal = $_GET['TITLE'];
+$id = $_GET['ID'];
 
 $categoryID = [0];
 $stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
@@ -40,7 +41,8 @@ if(count($deals)<1){
 
 	$params = [
 	    "filter" => [
-	        "TITLE" =>$titleDeal,
+	        //"TITLE" =>$titleDeal,
+	        "ID" =>$id,
 	        "CATEGORY_ID" =>$categoryID,
 	        "STAGE_ID" =>$stageIdLose
 	    ]
