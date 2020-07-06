@@ -37,16 +37,16 @@ if(count($deals)<1){
 
 	if($fase = 'Perdido'){
 		$stageId = ['LOSE'];
-		$qtdDias = '-15'; 	
+		$qtdDias = '15'; 	
 	
 	}elseif ($fase = 'Negócios Fechados') {
 		$stageId = ['WON'];
-		$qtdDias = '-30'; 
+		$qtdDias = '30'; 
 	}
 
 	date_default_timezone_set('America/Sao_Paulo');
 	$date = date_create(date('Y-m-d'));
-	date_add($date, date_interval_create_from_date_string($qtdDias.'days'));
+	date_add($date, date_interval_create_from_date_string('-'.$qtdDias.'days'));
 	$timeWithoutDeal = date_format($date, 'd-m-Y');
 
 
