@@ -8,6 +8,7 @@ $bx24 = new BitrixAPI($webhook);
 //$titleDeal = 'Teste manipulador Movida 4';
 $titleDeal = $_GET['TITLE'];
 $id = $_GET['ID'];
+$fase = $_GET['FASE'];
 
 $categoryID = [0];
 $stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
@@ -32,19 +33,29 @@ $deals = $response->result;
 //Na fase Perdido, verifica se existe Deal criado no fúnil Grandes Grupos
 if(count($deals)<1){
 
+	
+
+	if($fase = 'Perdido'){
+		$stageId = ['LOSE'];
+		$qtdDias = '-15'; 	
+	
+	}elseif ($fase = 'Negócios Fechados') {
+		$stageId = ['WON'];
+		$qtdDias = '-30'; 
+	}
+
 	date_default_timezone_set('America/Sao_Paulo');
 	$date = date_create(date('Y-m-d'));
-	date_add($date, date_interval_create_from_date_string('-30 days'));
+	date_add($date, date_interval_create_from_date_string({$qtdDias}.'days'));
 	$timeWithoutDeal = date_format($date, 'd-m-Y');
 
-	$stageIdLose = ['LOSE'];
 
 	$params = [
 	    "filter" => [
 	        //"TITLE" =>$titleDeal,
 	        "ID" =>$id,
 	        "CATEGORY_ID" =>$categoryID,
-	        "STAGE_ID" =>$stageIdLose
+	        "STAGE_ID" =>$stageId
 	    ]
 	];
 	
