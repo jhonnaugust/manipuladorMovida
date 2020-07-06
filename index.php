@@ -7,7 +7,6 @@ $bx24 = new BitrixAPI($webhook);
 
 $titleDeal = $_GET['TITLE'];
 $id = $_GET['ID'];
-//$fase = $_GET['FASE'];
 
 
 $categoryID = [0];
@@ -25,6 +24,8 @@ $params = [
     ]
 ];
 
+var_dump($params);
+
 $response = $bx24->callMethod("crm.deal.list", $params);
 $deals = $response->result;
 
@@ -32,23 +33,6 @@ $deals = $response->result;
 
 //Na fase Perdido, verifica se existe Deal criado no fúnil Grandes Grupos
 if(count($deals)<1){
-
-	$params = [
-	    "filter" => [
-	        //"TITLE" =>$titleDeal,
-	        "ID" =>$id,
-	        "CATEGORY_ID" =>$categoryID,
-	        "STAGE_ID" =>$stageId
-	    ]
-	];
-	
-	$response2 = $bx24->callMethod("crm.deal.list", $params);
-    $dealsLose = $response2->result;
-
-    foreach($dealsLose as $deal){
-    	$id = $deal->ID;
-	}
-
 
 	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o Responsável/Gestor)dentro da automação.
 	$semDeal = "UF_CRM_1593805882";
