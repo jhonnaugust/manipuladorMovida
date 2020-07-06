@@ -34,7 +34,7 @@ $deals = $response->result;
 if(count($deals)<1){
 
 	
-
+	/*
 	if($fase = 'Perdido'){
 		$stageId = ['LOSE'];
 		$qtdDias = '15'; 	
@@ -74,14 +74,15 @@ if(count($deals)<1){
 
 
 	$params_message = [
-	    	"USER_ID" =>$assigned_by_id,
-	    	"MESSAGE" =>$message
+	    "USER_ID" =>$assigned_by_id,
+	    "MESSAGE" =>$message
 	    
 	];
 
 	$bx24->callMethod('im.notify', $params_message);
 
-	
+	*/
+
 	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o Responsável/Gestor)dentro da automação.
 	$semDeal = "UF_CRM_1593805882";
 	
