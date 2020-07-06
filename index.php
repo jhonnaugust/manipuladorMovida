@@ -5,10 +5,10 @@ $webhook = "https://b24-ol3oxl.bitrix24.com.br/rest/1/6lrqky19v4v9x47r/";
 $bx24 = new BitrixAPI($webhook);                                        
 
 
-//$titleDeal = 'Teste manipulador Movida 4';
 $titleDeal = $_GET['TITLE'];
 $id = $_GET['ID'];
 $fase = $_GET['FASE'];
+
 
 $categoryID = [0];
 $stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
@@ -46,7 +46,7 @@ if(count($deals)<1){
 
 	date_default_timezone_set('America/Sao_Paulo');
 	$date = date_create(date('Y-m-d'));
-	date_add($date, date_interval_create_from_date_string({$qtdDias}.'days'));
+	date_add($date, date_interval_create_from_date_string($qtdDias.'days'));
 	$timeWithoutDeal = date_format($date, 'd-m-Y');
 
 
