@@ -35,7 +35,7 @@ $deals = $response->result;
 if(count($deals)<1){
 
 	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o Responsável/Gestor)dentro da automação.
-	$semDeal = "UF_CRM_1594147596";
+	$semDeal = "UF_CRM_1594151163";
 	
 	$params_verifica_deal = [
 	    "id" =>$id,
