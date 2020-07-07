@@ -1,7 +1,7 @@
 <?php
 include_once "./Bitrix24Webhook.php";
 
-$webhook = "https://b24-ol3oxl.bitrix24.com.br/rest/1/6lrqky19v4v9x47r/";
+$webhook = "https://movida.bitrix24.com.br/rest/5223/821uwjhgfixqe2b5/";
 $bx24 = new BitrixAPI($webhook);                                        
 
 
@@ -9,8 +9,8 @@ $companyID = $_GET['COMPANY_ID'];
 $id = $_GET['ID'];
 
 
-$categoryID = [0];
-$stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
+$categoryID = [19];
+$stageID = ['C19:NEW','C19:PREPARATION','C19:PREPAYMENT_INVOICE','C19:EXECUTING','C19:FINAL_INVOICE',];
 
 if(!isset($companyID)){
     exit("Nome do negócio não informado");
@@ -35,7 +35,7 @@ $deals = $response->result;
 if(count($deals)<1){
 
 	//Atuliza campo para que o mesmo possa ser verificado (na hora de enviar e-mail para o Responsável/Gestor)dentro da automação.
-	$semDeal = "UF_CRM_1593805882";
+	$semDeal = "UF_CRM_1594147596";
 	
 	$params_verifica_deal = [
 	    "id" =>$id,
