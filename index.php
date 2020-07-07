@@ -24,7 +24,7 @@ $params = [
     ]
 ];
 
-var_dump($params);
+//var_dump($params);
 
 $response = $bx24->callMethod("crm.deal.list", $params);
 $deals = $response->result;
@@ -45,6 +45,8 @@ if(count($deals)<1){
 	];
 
 	$bx24->callMethod("crm.deal.update", $params_verifica_deal);
+
+	//echo 'atualizou !!!';
 	
 }else{
 	exit('Encerra o processo');
