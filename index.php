@@ -5,20 +5,20 @@ $webhook = "https://b24-ol3oxl.bitrix24.com.br/rest/1/6lrqky19v4v9x47r/";
 $bx24 = new BitrixAPI($webhook);                                        
 
 
-$titleDeal = $_GET['TITLE'];
+$companyID = $_GET['COMPANY_ID'];
 $id = $_GET['ID'];
 
 
 $categoryID = [0];
 $stageID = ['NEW','PREPARATION','PREPAYMENT_INVOICE','EXECUTING','FINAL_INVOICE',];
 
-if(!isset($titleDeal)){
+if(!isset($companyID)){
     exit("Nome do negócio não informado");
 }
 
 $params = [
     "filter" => [
-        "TITLE" =>$titleDeal,
+        "COMPANY_ID" =>$companyID,
         "CATEGORY_ID" =>$categoryID,
         "STAGE_ID" =>$stageID
     ]
